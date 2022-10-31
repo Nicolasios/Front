@@ -7,16 +7,33 @@ import {
     ProFormCheckbox,
     ProFormText,
 } from '@ant-design/pro-components';
-import {message } from 'antd';
+import axios from 'axios'
+import {Button, Form, message ,Input, Checkbox, Card} from 'antd';
 import './index.css'
-import GradButton from "../Components/GradButton";
+import RainbowText from "../../Components/RainbowText";
+import {useState} from "react";
+import { useNavigate } from "react-router-dom";
 
-const Login = ()=>{
+
+const Login: React.FC= ()=>{
+    const [loginState,setLoginState] = useState(true);
+    const navigate = useNavigate();
 
     const onFinish = async (values: Record<string, any>) => {
-        console.log(values);
-        message.success("登陆成功")
-        return true;
+        const username = values["username"];
+        const userpwd = values["password"];
+        const url = "http://127.0.0.1:8086/user/login?username="+username+"&userpwd="+userpwd;
+
+        axios.get(url).then((response) =>   {
+            if(response.data===true){
+                message.success("登陆成功");
+                navigate("/home")
+            }else {
+                message.error("登陆失败")
+            }
+        }).catch( (error) => {
+            console.log(error);
+        });
     }
 
     return (
@@ -67,16 +84,18 @@ const Login = ()=>{
                         自动登录
                     </ProFormCheckbox>
                     <a href="/"
-                        style={{
-                            float: 'right',
-                        }}
+                       style={{
+                           float: 'right',
+                       }}
                     >
                         忘记密码
                     </a>
                 </div>
             </LoginForm>
         </div>
+
     );
+
 };
 
 export  default  Login;
