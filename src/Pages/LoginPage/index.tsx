@@ -8,15 +8,13 @@ import {
     ProFormText,
 } from '@ant-design/pro-components';
 import axios from 'axios'
-import {Button, Form, message ,Input, Checkbox, Card} from 'antd';
-import './index.css'
+import {message} from 'antd';
+import './index.scss'
 import RainbowText from "../../Components/RainbowText";
-import {useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 
 const Login: React.FC= ()=>{
-    const [loginState,setLoginState] = useState(true);
     const navigate = useNavigate();
 
     const onFinish = async (values: Record<string, any>) => {
@@ -37,8 +35,8 @@ const Login: React.FC= ()=>{
     }
 
     return (
-        <div style={{ backgroundColor: 'aliceblue' }}>
-
+        <div id="login_box" className="frosted-glass">
+            <RainbowText text={"free login and free search"}/>
             <LoginForm
                 logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
                 title="Login"

@@ -8,11 +8,6 @@ const App = ()=>{
 
     return (
         <div>
-            <Link className="list-group-item" to="/GradButton">GradButton</Link>
-            <br/>
-            <Link className="list-group-item" to="/RainbowText">RainbowText</Link>
-            <br/>
-            <Link className="list-group-item" to="/Login">login</Link>
             <Routes>
                 <Route path="/GradButton" element={<GradButton text={"click on me"}/>}/>
                 <Route path="/RainbowText" element={<RainbowText text={"something for you"}/>}/>
